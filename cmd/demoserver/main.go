@@ -93,6 +93,11 @@ func (e *elizaServer) Introduce(
 		name = "Anonymous User"
 	}
 	intros := eliza.GetIntroResponses(name)
+
+	for i := 0; i < 100; i++ {
+		intros = append(intros, eliza.GetIntroResponses(name)...)
+	}
+
 	var ticker *time.Ticker
 	if e.streamDelay > 0 {
 		ticker = time.NewTicker(e.streamDelay)
